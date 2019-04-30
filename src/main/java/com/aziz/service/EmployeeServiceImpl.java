@@ -1,5 +1,6 @@
 package com.aziz.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -15,6 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	public EmployeeRepository repo;
+
 	void setRepo(EmployeeRepository repo) {
 		this.repo = repo;
 	}
@@ -28,12 +30,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void saveEmployee(Employee employee) {
 		this.repo.save(employee);
-		
+
 	}
 
 	@Override
-	public void deleteEmployee(Long id) {
-		this.repo.deleteById(id);
+	public Employee deleteEmployee(Long id) {
+		Optional<Employee> e = null;
+		if(this.repo.existsById(id)) {
+			e =  repo.findById(id);
+			this.repo.deleteById(id);
+		} 
+		else {
+			return new Employee();
+		}
+		return e.get();
 	}
+
+	@Override
+	public List<Employee> getAllEmployee() {
+		return this.repo.findAll();
+	}
+ 
 
 }
