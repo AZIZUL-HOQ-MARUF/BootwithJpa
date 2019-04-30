@@ -25,4 +25,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return emp.isPresent() == false ? new Employee() : emp.get();
 	}
 
+	@Override
+	public void saveEmployee(Employee employee) {
+		this.repo.save(employee);
+		
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
+		this.repo.deleteById(id);
+	}
+
 }

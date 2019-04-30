@@ -1,6 +1,7 @@
 package com.aziz.BootWithJPA;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan(basePackages = "com.aziz.**")
 @EnableJpaRepositories(basePackages = "com.aziz.repo")
+@EnableAutoConfiguration
 @EntityScan("com.aziz.model")
 public class BootWithJpaApplication {
 
