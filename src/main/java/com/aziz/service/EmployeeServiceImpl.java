@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getAllEmployee() {
+	public List<Employee> getAllEmployee() { 
 		return this.repo.findAll();
 	}
  
