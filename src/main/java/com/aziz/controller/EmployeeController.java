@@ -24,28 +24,39 @@ public class EmployeeController {
 	@GetMapping(path = "/get-employee")
 	public AppResponse getEmployee(@RequestParam(value = "ID") Long id) {
 
-		//return empService.getEmployee(id);
+		// return empService.getEmployee(id);
 		return AppResponse.build(HttpStatus.OK).message("Success").body(empService.getEmployee(id));
 	}
+
 	@GetMapping(path = "/get-all-employee")
-	public List<Employee> getAllEmployee(){
-		
+	public List<Employee> getAllEmployee() {
+
 		return empService.getAllEmployee();
 	}
+
 	@PostMapping(path = "/save-employee")
 	public Employee saveEmployee(@RequestBody Employee employe) {
-		 empService.saveEmployee(employe); 
-		 return employe;
+		empService.saveEmployee(employe);
+		return employe;
 	}
+
 	@PostMapping(path = "/update-employee")
 	public Employee updateEmployee(@RequestBody Employee employe) {
-		 empService.saveEmployee(employe); 
-		 return employe;
+		empService.saveEmployee(employe);
+		return employe;
 	}
+
 	@GetMapping(path = "/delete-emp/{id}")
-	public Employee deleteEmployee(@PathVariable(name="id") Long id) {
-		
+	public Employee deleteEmployee(@PathVariable(name = "id") Long id) {
+
 		return this.empService.deleteEmployee(id);
+	}
+
+	@GetMapping(value="/get-login")
+	public AppResponse getLoginEmp(
+			@RequestParam(value = "NAME") String name, 
+			@RequestParam(value = "ID") Long id) { 
+		return AppResponse.build(HttpStatus.OK).message("Success").body(empService.getLoginEmp(name, id));
 	}
 
 }

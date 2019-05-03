@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aziz.controller.errorController.ResourceNotFoundException;
 import com.aziz.model.Employee;
 import com.aziz.repo.EmployeeRepository;
 
@@ -41,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			this.repo.deleteById(id);
 		} 
 		else {
-			return new Employee();
+			throw new ResourceNotFoundException("Employe ID : "+id+" not Found");
 		}
 		return e.get();
 	}
@@ -49,6 +50,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getAllEmployee() { 
 		return this.repo.findAll();
+	}
+
+	@Override
+	public Employee getLoginEmp(String name, Long id) {
+		return this.repo.getEmpById(id, name);
 	}
  
 

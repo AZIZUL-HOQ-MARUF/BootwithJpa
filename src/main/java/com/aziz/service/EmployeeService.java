@@ -9,5 +9,6 @@ public interface EmployeeService {
 	public void saveEmployee(Employee employee);
 	public Employee deleteEmployee(Long id);
 	public List<Employee> getAllEmployee(); 
+	public Employee getLoginEmp(String name, Long id);
 
 }
