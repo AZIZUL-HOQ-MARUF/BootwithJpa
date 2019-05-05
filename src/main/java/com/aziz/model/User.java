@@ -20,6 +20,9 @@ public class User {
 	
 	@Column(name="mailAddress")
 	private String mailAddress;
+	
+	@Column(name="password")
+	private String password;
 
 	public Long getId() {
 		return id;
@@ -44,6 +47,15 @@ public class User {
 	public void setMailAddress(String mailAddress) {
 		this.mailAddress = mailAddress;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
  
 
 }

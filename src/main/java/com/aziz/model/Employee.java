@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,19 +18,21 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long id; 
 	
-	@Column(name = "DEPT")
-	private String department;
+	@ManyToOne
+	@JoinColumn(name="DEPT_ID")
+	private Department department;
+	 
 
 	public Employee() {
 
 	}
 
-	public Employee(String name, long id, String department) {
+	public Employee(String name, long id, Department department) {
 		super();
 		this.name = name;
-		this.id = id;
+		this.id = id; 
 		this.department = department;
 	}
 
@@ -48,12 +52,13 @@ public class Employee {
 		this.id = id;
 	}
 
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
-	}
+	} 
+	
 
 }
