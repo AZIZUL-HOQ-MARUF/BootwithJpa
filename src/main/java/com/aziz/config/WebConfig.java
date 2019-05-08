@@ -2,6 +2,8 @@ package com.aziz.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -22,6 +24,18 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	    registry.addResourceHandler("/api/swagger-ui.html**").addResourceLocations("classpath:/META-INF/resources/swagger-ui.html");
 	    registry.addResourceHandler("/api/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		// TODO Auto-generated method stub
+		WebMvcConfigurer.super.addInterceptors(registry);
+	}
+
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		// TODO Auto-generated method stub
+		WebMvcConfigurer.super.addCorsMappings(registry);
 	}
 
 
