@@ -5,6 +5,7 @@
  */
 package com.aziz.core;
 
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -22,7 +23,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns("/core/auth/**");
+        registry.addInterceptor(interceptor)
+                .addPathPatterns(AuthConstrains.FILTERING_PATH_PATTERN)
+                .excludePathPatterns(Arrays.asList(AuthConstrains.NON_FILTERING_PATH_PATTERN));
     }
 
 }

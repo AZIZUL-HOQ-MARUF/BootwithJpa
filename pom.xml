@@ -13,6 +13,7 @@
 	<artifactId>BootWithJPA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BootWithJPA</name>
+        <packaging>war</packaging>
 	<description>Demo project for Spring Boot With JPA Hibernate</description>
 
 	<properties>
