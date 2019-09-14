@@ -6,8 +6,7 @@
 package com.aziz.core;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.impl.DefaultJwtParser;
+import io.jsonwebtoken.Jwts;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -26,15 +25,18 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("Pre Haldle is Calling");
-        JwtParser claims = new DefaultJwtParser();
+        Claims claims;
         try {
-            claims.setSigningKey(AuthConstrains.KEY)
-                    .parse(request.getHeader(AuthConstrains.HEADER));
+            claims = Jwts.parser().setSigningKey(AuthConstrains.KEY).parseClaimsJws(request.getHeader(AuthConstrains.HEADER)).getBody();
+            request.setAttribute(AuthConstrains.USER, claims.getIssuer());
+            request.setAttribute(AuthConstrains.ID, claims.getId());
+            request.setAttribute(AuthConstrains.MAIL, claims.getSubject());
+            return true;
         } catch (Exception e) {
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            return false;
+
         }
-        return true;
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        return false;
     }
 
     @Override

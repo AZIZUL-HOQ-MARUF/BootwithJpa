@@ -39,7 +39,6 @@ public class AuthController {
     AppResponse login(
             @RequestParam(value = "USER") String userName,
              @RequestParam(value = "PASS") String pass) {
-        System.out.println(userName + "fgdgdfgfdg");
         User user = authDao.getUser(userName, pass);
         if (user != null) {
             user.setPassword("");
@@ -54,7 +53,7 @@ public class AuthController {
 
             return AppResponse.build(HttpStatus.OK).body(tokenMap).message("Token Generetion Success");
         } else {
-            return AppResponse.build(HttpStatus.UNAUTHORIZED).message("Login Failed");
+            return AppResponse.build(HttpStatus.UNAUTHORIZED).message("UserName or Password Invalid");
         }
 
     }
