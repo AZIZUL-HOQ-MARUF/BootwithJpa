@@ -24,21 +24,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EntityScan("com.aziz.model")
 public class BootWithJpaApplication {
 
-	public static void main(String[] args) {
-		System.setProperty("server.servlet.context-path", "/boot-jpa");
-		System.setProperty("server.port", "8585");
-		SpringApplication.run(BootWithJpaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        /**
+         * Works only in jar packaging
+         */
+//		System.setProperty("server.servlet.context-path", "/boot-jpa");
+//		System.setProperty("server.port", "8585");
+        SpringApplication.run(BootWithJpaApplication.class, args);
+    }
 
-	@Bean
-	public Docket lastApi() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any()).build();
+    @Bean
+    public Docket lastApi() {
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any()).build();
 
-	}
+    }
 
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("").description(" ").version("2.0").build();
-	}
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title("").description(" ").version("2.0").build();
+    }
 
 }
