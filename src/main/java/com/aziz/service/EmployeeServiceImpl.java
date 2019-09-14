@@ -49,11 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getAllEmployee() { 
 		return this.repo.findAll();
 	}
-
-	@Override
-	public Employee getLoginEmp(String name, Long id) {
-		return this.repo.getEmpById(id, name);
-	}
+ 
  
 
 }

@@ -54,11 +54,6 @@ public class EmployeeController {
 		return this.empService.deleteEmployee(id);
 	}
 
-	@GetMapping(value="/get-login")
-	public AppResponse getLoginEmp(
-			@RequestParam(value = "NAME") String name, 
-			@RequestParam(value = "ID") Long id) { 
-		return AppResponse.build(HttpStatus.OK).message("Success").body(empService.getLoginEmp(name, id));
-	}
+	
 
 }
