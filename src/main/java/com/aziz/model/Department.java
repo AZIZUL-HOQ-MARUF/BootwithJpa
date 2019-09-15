@@ -2,8 +2,11 @@ package com.aziz.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,15 +20,15 @@ public class Department implements Serializable {
 
     @Column(name = "NAME")
     private String name;
-    
-    @OneToMany(mappedBy = "department")
-    private Collection<Employee> employee;
 
-    public Collection<Employee> getEmployee() {
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Employee> employee;
+
+    public Set<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Collection<Employee> employee) {
+    public void setEmployee(Set<Employee> employee) {
         this.employee = employee;
     }
 
