@@ -15,7 +15,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  */
 public class ServletInitializer extends SpringBootServletInitializer{
 
-    //This Method is needed when packaging to war file
+    //This Class and Method is needed when packaging type = war file.
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(BootWithJpaApplication.class);
