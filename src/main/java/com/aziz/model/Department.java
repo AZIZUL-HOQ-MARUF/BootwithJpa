@@ -1,5 +1,6 @@
 package com.aziz.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Department")
-public class Department {
+public class Department implements Serializable{
 	@Id
 	private long id;
 	
